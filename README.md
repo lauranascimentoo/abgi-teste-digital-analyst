@@ -38,9 +38,9 @@ cp .env.example .env
 ```
 - Configure o arquivo .env com suas credenciais de banco de dados:
 ```php
-DB_CONNECTION=mysql
+DB_CONNECTION=sqlsrv
 DB_HOST=127.0.0.1
-DB_PORT=3306
+DB_PORT=1433
 DB_DATABASE=nome_do_banco
 DB_USERNAME=root
 DB_PASSWORD=senha
