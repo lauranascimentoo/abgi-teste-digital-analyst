@@ -5,6 +5,10 @@
         Novo
     </button>
 
+    <form wire:submit.prevent="buscar" class="mb-3">
+    <input type="text" wire:model.lazy="search" placeholder="Buscar por nome..." class="form-control" />
+    </form>
+
     @if($showForm)
         <div class="mb-4 p-4 border rounded bg-gray-100">
             <form wire:submit.prevent="save">
