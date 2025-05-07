@@ -5,9 +5,25 @@
         Novo
     </button>
 
-    <form wire:submit.prevent="buscar" class="mb-3">
-    <input type="text" wire:model.lazy="search" placeholder="Buscar por nome..." class="form-control" />
+    <form wire:submit.prevent="buscar" class="d-flex mb-3" style="gap: 10px;">
+    <input type="text" wire:model="search" placeholder="Buscar por nome..." class="form-control">
+
+    <select wire:model="filterStatus" class="form-control" style="width: 200px;">
+        <option value="">Todos os status</option>
+        <option value="1">Ativo</option>
+        <option value="0">Inativo</option>
+    </select>
+    
+    <button type="submit" class="btn btn-primary">
+        Buscar
+    </button>
+
+    <button type="button" wire:click="limparBusca" class="btn btn-secondary">
+        Limpar Filtro
+    </button>
+
     </form>
+
 
     @if($showForm)
         <div class="mb-4 p-4 border rounded bg-gray-100">

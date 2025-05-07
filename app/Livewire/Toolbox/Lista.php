@@ -13,6 +13,7 @@ class Lista extends Component
     public $deleteId = null;
     public $nome, $versao, $status = 1, $download_url;
     public $search = '';
+    public $filterStatus = '';
 
     public function showForm()
     {
@@ -73,7 +74,11 @@ class Lista extends Component
         if (!empty($this->search)) {
             $query->where('nome', 'like', '%' . $this->search . '%');
         }
-    
+
+        if ($this->filterStatus !== '') {
+            $query->where('status', $this->filterStatus);
+        }
+
         return view('livewire.toolbox.lista', [
             'softwares' => $query->orderBy('nome', 'asc')->get(),
         ]);
@@ -82,6 +87,12 @@ class Lista extends Component
     public function buscar()
     {
         // vazio: apenas para acionar o Livewire render()
+    }
+
+    public function limparBusca()
+    {
+        $this->search = '';
+        $this->filterStatus = '';
     }
 
     private function resetForm()
