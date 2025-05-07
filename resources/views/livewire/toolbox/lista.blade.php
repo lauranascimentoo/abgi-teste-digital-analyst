@@ -72,6 +72,9 @@
                         <button wire:click="edit({{ $software->id }})" style="padding: 4px 8px; background-color: #ffc107; color: black; border: none; border-radius: 4px;">
                             ✏️ Editar
                         </button>
+                        <button wire:click="confirmDelete({{ $software->id }})" style="padding: 4px 8px; background-color: #dc3545; color: white; border: none; border-radius: 4px;">
+                            🗑️ Excluir
+                        </button>
                     </td>
                 </tr>
             @empty
@@ -81,4 +84,20 @@
             @endforelse
         </tbody>
     </table>
+
+    @if($confirmingDelete)
+        <div style="position: fixed; top: 0; left: 0; width:100%; height:100%; background-color: rgba(0,0,0,0.5); display:flex; align-items:flex-start; justify-content:center;">
+            <div style="background: white; padding: 20px; margin-top: 40px; border-radius: 6px; width: 300px;">
+                <p>Tem certeza que deseja excluir este item?</p>
+                <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 15px;">
+                    <button wire:click="delete" style="padding: 6px 12px; background-color: #dc3545; color: white; border: none; border-radius: 4px;">
+                        Confirmar
+                    </button>
+                    <button wire:click="$set('confirmingDelete', false)" style="padding: 6px 12px; background-color: #6c757d; color: white; border: none; border-radius: 4px;">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    @endif
 </div>

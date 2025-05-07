@@ -9,7 +9,8 @@ class Lista extends Component
 {
     public $showForm = false;
     public $editandoId = null;
-
+    public $confirmingDelete = false;
+    public $deleteId = null;
     public $nome, $versao, $status = 1, $download_url;
 
     public function showForm()
@@ -79,5 +80,18 @@ class Lista extends Component
         $this->versao = '';
         $this->status = 1;
         $this->download_url = '';
+    }
+
+    public function confirmDelete($id)
+    {
+        $this->deleteId = $id;
+        $this->confirmingDelete = true;
+    }
+
+    public function delete()
+    {
+        Software::findOrFail($this->deleteId)->delete();
+        $this->confirmingDelete = false;
+        $this->deleteId = null;
     }
 }
