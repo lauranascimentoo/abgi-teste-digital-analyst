@@ -43,7 +43,8 @@
         </div>
     @endif
 
-    <table border="1" cellpadding="8" cellspacing="0" style="width: 100%; border-collapse: collapse;">
+    <!-- <table border="1" cellpadding="8" cellspacing="0" style="width: 100%; border-collapse: collapse;"> -->
+    <table class="table table-bordered table-striped" style="width: 100%;">
         <thead>
             <tr style="background-color: #f1f1f1;">
                 <th>ID</th>
@@ -99,5 +100,9 @@
                 </div>
             </div>
         </div>
+
+    <div wire:loading style="color: blue; font-weight: bold;">
+        Carregando...
+    </div>
     @endif
 </div>

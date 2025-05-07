@@ -68,7 +68,7 @@ class Lista extends Component
     public function render()
     {
         return view('livewire.toolbox.lista', [
-            'softwares' => Software::latest()->get(),
+            'softwares' => Software::orderBy('nome', 'asc')->get(),
         ]);
     }
 
