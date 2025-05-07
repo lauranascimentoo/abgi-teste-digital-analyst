@@ -28,7 +28,7 @@ A lógica de funcionamento do sistema é centrada no componente **Livewire Lista
 git clone https://github.com/seu-usuario/seu-repositorio.git
 cd seu-repositorio
 ```
--Instale as dependências PHP com o Composer:
+- Instale as dependências PHP com o Composer:
 ```shell
 composer install
 ```
@@ -50,7 +50,7 @@ DB_PASSWORD=senha
 php artisan key:generate
 php artisan migrate
 ```
--Inicie o servidor local:
+- Inicie o servidor local:
 ```shell
 php artisan serve
 ```
