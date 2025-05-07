@@ -65,4 +65,5 @@ Como este é meu primeiro projeto utilizando Laravel e Livewire, a solução rep
 - O **layout** pode ser aprimorado com o uso de frameworks mais modernos de front-end como Tailwind CSS com componentes visuais mais acessíveis e responsivos.
 - A **validação dos dados** pode ser reforçada com mensagens mais contextuais e feedback visual aprimorado, além de validações mais apuradas para garantir que as informações preenchidas tem sentido lógico.
 - A **integração do sistema com autenticação e permissões**, garantindo que apenas usuários autorizados possam editar ou excluir registros.
+
 Além de funcionalidades adicionais como exportação de dados oara base excel, ordenação por colunas e suporte a múltiplos idiomas tornariam o sistema ainda mais robusto.
