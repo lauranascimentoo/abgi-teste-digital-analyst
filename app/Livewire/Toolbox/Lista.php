@@ -4,9 +4,12 @@ namespace App\Livewire\Toolbox;
 
 use Livewire\Component;
 use App\Models\Software;
+use Livewire\WithPagination;
 
 class Lista extends Component
 {
+    use WithPagination;
+
     public $showForm = false;
     public $editandoId = null;
     public $confirmingDelete = false;
@@ -14,6 +17,7 @@ class Lista extends Component
     public $nome, $versao, $status = 1, $download_url;
     public $search = '';
     public $filterStatus = '';
+    public $perPage = 10;
 
     public function showForm()
     {
@@ -80,7 +84,7 @@ class Lista extends Component
         }
 
         return view('livewire.toolbox.lista', [
-            'softwares' => $query->orderBy('nome', 'asc')->get(),
+            'softwares' => $query->orderBy('nome', 'asc')->paginate($this->perPage),
         ]);
     }
 

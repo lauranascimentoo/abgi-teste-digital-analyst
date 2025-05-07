@@ -13,7 +13,7 @@
         <option value="1">Ativo</option>
         <option value="0">Inativo</option>
     </select>
-    
+
     <button type="submit" class="btn btn-primary">
         Buscar
     </button>
@@ -21,6 +21,12 @@
     <button type="button" wire:click="limparBusca" class="btn btn-secondary">
         Limpar Filtro
     </button>
+
+    <select wire:model="perPage" class="form-control" style="width: 120px;">
+        <option value="10">10 por página</option>
+        <option value="25">25 por página</option>
+        <option value="50">50 por página</option>
+    </select>
 
     </form>
 
@@ -105,6 +111,10 @@
             @endforelse
         </tbody>
     </table>
+
+    <div style="margin-top: 15px;">
+    {{ $softwares->links() }}
+    </div>
 
     @if($confirmingDelete)
         <div style="position: fixed; top: 0; left: 0; width:100%; height:100%; background-color: rgba(0,0,0,0.5); display:flex; align-items:flex-start; justify-content:center;">
