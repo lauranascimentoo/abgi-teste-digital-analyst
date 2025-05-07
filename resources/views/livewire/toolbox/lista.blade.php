@@ -1,12 +1,12 @@
 <div class="container" style="padding: 20px;">
     <h2 style="margin-bottom: 10px;">Lista de Softwares</h2>
 
-    <button wire:click="showForm" style="margin-bottom: 10px; padding: 6px 12px; background-color: #007bff; color: white; border: none; border-radius: 4px;">
+    <button wire:click="$toggle('showForm')" style="margin-bottom: 10px; padding: 6px 12px; background-color: #007bff; color: white; border: none; border-radius: 4px;">
         Novo
     </button>
 
     @if($showForm)
-        <div class="mb-4 p-4 border rounded bg-gray-100" style="margin-bottom: 20px; border: 1px solid #ccc;">
+        <div class="mb-4 p-4 border rounded bg-gray-100">
             <form wire:submit.prevent="save">
                 <div style="margin-bottom: 10px;">
                     <label>Nome:</label><br>
@@ -23,6 +23,7 @@
                 <div style="margin-bottom: 10px;">
                     <label>Status:</label><br>
                     <select wire:model="status" class="border p-1 w-full">
+                        <option value="">Selecione</option>
                         <option value="1">Ativo</option>
                         <option value="0">Inativo</option>
                     </select>

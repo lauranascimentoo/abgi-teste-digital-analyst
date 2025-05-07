@@ -8,30 +8,13 @@ use App\Models\Software;
 class Lista extends Component
 {
     public $showForm = false;
-    public $softwareId = null;
+    public $editandoId = null;
+
     public $nome, $versao, $status = 1, $download_url;
 
     public function showForm()
     {
-        $this->resetFields();
-        $this->showForm = true;
-    }
-
-    public function edit($id)
-    {
-        // Se clicar no mesmo item que já está sendo editado, fecha o formulário
-        if ($this->softwareId === $id && $this->showForm) {
-            $this->resetFields();
-            return;
-        }
-
-        $software = Software::findOrFail($id);
-
-        $this->softwareId = $software->id;
-        $this->nome = $software->nome;
-        $this->versao = $software->versao;
-        $this->status = $software->status;
-        $this->download_url = $software->download_url;
+        $this->resetForm();
         $this->showForm = true;
     }
 
@@ -44,17 +27,14 @@ class Lista extends Component
             'download_url' => 'nullable|url',
         ]);
 
-        if ($this->softwareId) {
-            // Atualiza software existente
-            $software = Software::findOrFail($this->softwareId);
-            $software->update([
+        if ($this->editandoId) {
+            Software::findOrFail($this->editandoId)->update([
                 'nome' => $this->nome,
                 'versao' => $this->versao,
                 'status' => $this->status,
                 'download_url' => $this->download_url,
             ]);
         } else {
-            // Cria novo software
             Software::create([
                 'nome' => $this->nome,
                 'versao' => $this->versao,
@@ -63,13 +43,25 @@ class Lista extends Component
             ]);
         }
 
-        $this->resetFields();
+        $this->resetForm();
     }
 
-    private function resetFields()
+    public function edit($id)
     {
-        $this->reset(['softwareId', 'nome', 'versao', 'status', 'download_url', 'showForm']);
-        $this->status = 1;
+        if ($this->editandoId === $id) {
+            // Se clicar novamente, fecha
+            $this->resetForm();
+            return;
+        }
+
+        $software = Software::findOrFail($id);
+
+        $this->editandoId = $id;
+        $this->nome = $software->nome;
+        $this->versao = $software->versao;
+        $this->status = $software->status;
+        $this->download_url = $software->download_url;
+        $this->showForm = true;
     }
 
     public function render()
@@ -77,5 +69,15 @@ class Lista extends Component
         return view('livewire.toolbox.lista', [
             'softwares' => Software::latest()->get(),
         ]);
+    }
+
+    private function resetForm()
+    {
+        $this->editandoId = null;
+        $this->showForm = false;
+        $this->nome = '';
+        $this->versao = '';
+        $this->status = 1;
+        $this->download_url = '';
     }
 }
